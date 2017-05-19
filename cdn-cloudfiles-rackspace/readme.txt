@@ -9,7 +9,7 @@ Evan Garcia
 
 
 -Features
-Enable CDN for assets
+Enable CDN for media assets
 Allow for directory Inclusions
 Allow for directory exclusions
 Upload to CDN on media upload

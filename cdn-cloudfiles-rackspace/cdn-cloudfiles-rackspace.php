@@ -9,13 +9,6 @@ License: GPLv2 or later
 Version: 1.0.0
 */
 
- //~ if(!file_exists("../wp-content/uploads/2017/05/handyman_services.jpg")){
- //~ echo dirname(__FILE__)."/../wp-content/uploads/2017/05/handyman_services.jpg"."<br />";
- //~ die("not found @ ".dirname(__FILE__));
- //~ }else{
-  //~ die("FOUND");
- 
- //~ }
 
 
 /* Check & Quit */
@@ -31,28 +24,10 @@ define('RACKSPACE_CDN_MIN_WP', '3.8');
 
 function UploadToCDN($post_ID) {
     $src = wp_get_attachment_image_src( $post_ID, 'large' )[0];
-    //~ $metadata=wp_get_attachment_metadata($post_ID);
-   //~ $filepath=$metadata['file'];
    $filepath=ltrim(str_replace(get_option('home'),'',$src),'/');
    $filename=explode("/",$filepath);
    $filename=end($filename);
-    //~ die($src);
-    //~ $lum = get_avg_luminance($src, 10, true);
-    //~ add_post_meta( $post_ID, 'image_lum', $lum, true ) || update_post_meta( $post_ID, 'image_lum', $lum );
     if(file_exists("../".$filepath)){
-    
-    
-    //~ $postTitle=get_the_title($post_ID);
-    //~ $my_postData = array(
-      //~ 'ID'           => $post_ID,
-     // 'post_title'   => $filepath.': '.$postTitle
-      //~ 'post_title'   => $filepath.': '.$postTitle
-  //~ );
-    //~ wp_update_post($my_postData);
-    
-    
-    //~ $metadata['image_meta']['title']="OK: ".$metadata['image_meta']['title'];
-    //~ wp_update_attachment_metadata( $post_ID,  $metadata );
    //~ // include the API
    ob_start();
    //~ ob_end_clean();
@@ -74,7 +49,6 @@ $pluginOptions=wp_parse_args(
 		);
 
 //~ // cloud info
-//$username = "bestal@sctechgroup.com"; // username
 $username = $pluginOptions['username']; // username
 $key = $pluginOptions['apikey']; // api key
 
@@ -84,8 +58,6 @@ $auth->authenticate();
 $conn = new CF_Connection($auth);
 
 //~ // Get the container we want to use
-//$container = $conn->create_container('EloAutoTest');
-//$container = $conn->get_container('EloAutoTest');
 $container = $conn->get_container($pluginOptions['container']);
 
 
